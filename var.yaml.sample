@@ -1,0 +1,7 @@
+# Definition du domaine windows
+domain: asten.maq
+fdqn_name: gitlab-test.asten.maq
+# gitlab_version <gitlab-ce|gitlab-ee>  
+gitlab_version: gitlab-ce
+# Installation avec ou sans docker <false|true> 
+docker: false
