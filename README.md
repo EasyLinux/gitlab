@@ -11,7 +11,7 @@ Table des matières
 
 ## Introduction
 
-Ce playbook permet l'installation de gitlab sur un serveur. Pour une installation **from scratch** suivre [ce lien](#scratch) 
+Ce playbook permet l'installation de gitlab sur un serveur. Pour une installation **from scratch** suivre [ce lien](#installation-from-scratch) 
 
 ## Configuration du playbook
 
@@ -66,7 +66,6 @@ Le playbook effectue plusieurs rôles :
 * update: mise à jour de CentOS
 * gitlab: installation de Gitlab
 
-<a href="scratch"></a>
 ## Installation 'from scratch'
 
 Pour utiliser ce playbook à partir de zéro, il convient de réaliser les étapes suivantes.
