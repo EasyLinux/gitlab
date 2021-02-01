@@ -7,7 +7,7 @@
 
 Table des matières 
 ------------------
-[[_TOC_]]
+[[_TOC_]] (TOC)
 
 ## Introduction
 
