@@ -1,0 +1,9 @@
+- name: Prépartion du serveur GitLab
+  hosts: Gitlab
+  remote_user: root
+  become: true
+  
+  roles:
+    - update
+    - gitlab
+

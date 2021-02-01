@@ -1,0 +1,15 @@
+  - include_vars: var.yaml
+
+  - name: Teste si sur architecture x86_64 
+    fail:
+      msg: Gitlab ne peut être installé que sur une architecture x86_64
+    when: ansible_architecture != "x86_64"
+
+  - name: Utiliser docker
+    include_tasks: with-docker.yaml
+    when: docker 
+
+  - name: Installation sans docker
+    include_tasks: without-docker.yaml
+    when: not docker
+

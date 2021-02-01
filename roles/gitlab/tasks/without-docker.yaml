@@ -1,0 +1,61 @@
+  - name: Pré-requis 
+    yum:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+      - curl 
+      - policycoreutils 
+      - openssh-server 
+      - openssh-clients 
+      - postfix
+
+  - name: Activation de sshd
+    service:
+      name: sshd
+      state: started
+      enabled: true
+
+  - name: Activation de postfix
+    service:
+      name: postfix
+      state: started
+      enabled: true
+
+  # Autoriser les ports 
+  - name: Autoriser le traffic http
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled     
+
+  - name: Autoriser le traffic https
+    firewalld:
+      service: https
+      permanent: yes
+      state: enabled     
+
+  - name: Ajouter le dépot Gitlab
+    get_url:
+      url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/config_file.repo?os={{ ansible_distribution|lower }}&dist={{ansible_distribution_major_version}}&source=script
+      dest: /etc/yum.repos.d/gitlab.repo
+
+  - name: Mise à jour de la liste des paquets installables
+    yum:
+      name: '*'
+      state: latest
+    tags: update
+
+  - name: Installation de {{ gitlab_version  }}  
+    yum:
+      name: "{{ gitlab_version  }}"
+      state: present
+
+  - name: Fixer l'URL d'accès à gitlab
+    lineinfile:
+      path: /etc/gitlab/gitlab.rb
+      regexp: '^external_url'
+      line: external_url="http://{{ fdqn_name }}"
+
+  - name: Prise en compte de la configuration
+    command: gitlab-ctl reconfigure

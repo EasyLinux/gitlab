@@ -1,0 +1,13 @@
+  - name: Pré-requis 
+    yum:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+      - docker
+
+  - name: Activation de docker
+    service:
+      name: docker
+      state: started
+      enabled: true

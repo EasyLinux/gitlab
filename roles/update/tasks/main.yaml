@@ -1,0 +1,17 @@
+  - include_vars: var.yaml
+
+  - name: Mise à jour
+    yum:
+      name: '*'
+      state: latest
+    tags: update
+
+  - name: Installation depot Epel
+    yum: 
+      name: "epel-release"
+      state: present
+  
+  - name: Set a hostname
+    hostname:
+      name: "{{ fdqn_name }}"
+
