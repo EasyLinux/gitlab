@@ -5,9 +5,10 @@
 * Version: 0.8
 * Description: Gitlab est un système de gestion de version de sources complet. Il dispose d'une grande base installée. Ce playbook installe la version <ce|ee>
 
+[[_TOC_]]
 ## Introduction
 
-Ce playbook permet l'installation de gitlab sur un serveur.
+Ce playbook permet l'installation de gitlab sur un serveur. Pour une installation **from scratch** suivre ce lien
 
 ## Configuration du playbook
 
@@ -37,9 +38,29 @@ Le fichier d'inventaire doit se nommer 'inventory' et contenir les éléments su
   <adresse IP>
 ```
 
+# Utilisation
+
+Pour utiliser le playbook
+
+* Créer un fichier *inventory* à la racine du projet
+* Créer un fichier *var.yaml* à la racine du projet
+* Faire un échange de clé ssh
+
+```bash
+$ ssh-keygen -t rsa
+$ ssh-copy-id root@<machine cible>
+``` 
+
+* Lancer la commande
+
+```bash
+$ ansible-playbook Gitlab.yaml
+```  
 
 ## Fonctionnement
 
 Le playbook effectue plusieurs rôles :
 * update: mise à jour de CentOS
 * gitlab: installation de Gitlab
+
+## Installation 'from scratch'
