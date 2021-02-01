@@ -29,6 +29,15 @@ gitlab_version: gitlab-ce
 docker: false
 ``` 
 
+## Inventaire
+
+Le fichier d'inventaire doit se nommer 'inventory' et contenir les éléments suivants :
+```
+[Gitlab]
+  <adresse IP>
+```
+
+
 ## Fonctionnement
 
 Le playbook effectue plusieurs rôles :
