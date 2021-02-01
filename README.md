@@ -7,7 +7,7 @@
 
 Table des matières 
 ------------------
-[[_TOC_]] (TOC)
+[[_TOC_]]
 
 ## Introduction
 
@@ -128,6 +128,36 @@ ansible-playbook Gitlab.yaml
 ```
 
 > **NB**: vous devez être dans le même répertoire que inventory pour lancer cette commande.
+
+# Sauvegarde
+
+Gitlab possède un outil de sauvegarde intégré, il copie le contenu des fichiers dans */var/opt/gitlab/backups* . Si vous avez choisi l'installation avec Docker, ce sera le même répertoire cible. 
+
+## Effectuer une sauvegarde
+
+* Sans Docker
+```bash
+gitlab-backup create SKIP=tar
+cp /etc/gitlab/* /var/opt/gitlab/backups/etc/
+```
+* Avec Docker
+```bash
+docker exec gitlab gitlab-backup create SKIP=tar
+docker cp gitlab:/etc/gitlab/* /var/opt/gitlab/backups/etc/
+```
+
+## Restaurer gitlab
+
+* Sans Docker
+```bash
+cp -r /var/opt/gitlab/backups/etc/* /etc/gitlab/ 
+gitlab-backup create SKIP=tar
+```
+* Avec Docker
+```bash
+docker cp /var/opt/gitlab/backups/etc/ gitlab:/etc/gitlab/* 
+docker exec gitlab gitlab-backup create SKIP=tar
+```
 
 
 

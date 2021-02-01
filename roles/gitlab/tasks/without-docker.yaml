@@ -59,3 +59,9 @@
 
   - name: Prise en compte de la configuration
     command: gitlab-ctl reconfigure
+
+  - name: Création du répertoire de sauvegarde
+    file:
+      path: /var/opt/gitlab/backups/etc/
+      state: directory
+      mode: '0775'
