@@ -1,9 +1,17 @@
 # Gitlab
 
-* Auteur : Serge NOEL
-* Contact: serge.noel@easylinux.fr
-* Version: 0.8
-* Description: Gitlab est un système de gestion de version de sources complet. Il dispose d'une grande base installée. Ce playbook installe la version <ce|ee>
+* **Auteur**: Serge NOEL
+* **Contact**: serge.noel@easylinux.fr
+* **Version**: 0.8
+* **Description**: Gitlab est un système de gestion de version de sources complet. Il dispose d'une grande base installée. Ce playbook installe la version <ce|ee>
+* ** Validations**:
+
+|  OS   | Distribution | Architecture | Validé |     
+|:-----:|:------------:|:------------:|:------:|   
+| Linux | CentOS 7     |  x86_64      |  OK    |     
+| Linux | CentOS 7     |  x86_64      |  OK    |     
+| Linux | CentOS 7     |  ppc64le     |  NON   |     
+
 
 Table des matières 
 ------------------
@@ -90,7 +98,7 @@ apt-get install -y ansible git
 ```
 ### Récupérer les fichiers du dépôt
 
-Se place dans un répoertoire, puis taper 
+Se place dans un répertoire, puis taper 
 
 ```bash 
 git clone https://github.com/easylinux/gitlab.git 
@@ -131,7 +139,7 @@ ansible-playbook Gitlab.yaml
 
 # Sauvegarde
 
-Gitlab possède un outil de sauvegarde intégré, il copie le contenu des fichiers dans */var/opt/gitlab/backups* . Si vous avez choisi l'installation avec Docker, ce sera le même répertoire cible. 
+Gitlab possède un outil de sauvegarde intégré, il copie le contenu du dépôt dans */var/opt/gitlab/backups* . Si vous avez choisi l'installation avec Docker, ce sera le même répertoire cible. 
 
 ## Effectuer une sauvegarde
 
