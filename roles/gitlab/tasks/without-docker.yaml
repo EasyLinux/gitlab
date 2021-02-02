@@ -1,4 +1,4 @@
-  - name: Pré-requis 
+  - name: Pré-requis (CentOS)
     yum:
       name: "{{ packages }}"
       state: present
@@ -9,6 +9,22 @@
       - openssh-server 
       - openssh-clients 
       - postfix
+    when: ansible_distribution == "CentOS"
+
+  - name: Pré-requis (Debian)
+    apt:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+      - curl 
+      - policycoreutils 
+      - openssh-server 
+      - openssh-client 
+      - postfix
+      - apt-transport-https
+      - debian-archive-keyring
+    when: ansible_distribution == "Debian"
 
   - name: Activation de sshd
     service:
@@ -28,28 +44,57 @@
       service: http
       permanent: yes
       state: enabled     
+    when: ansible_distribution == "CentOS"
 
   - name: Autoriser le traffic https
     firewalld:
       service: https
       permanent: yes
       state: enabled     
+    when: ansible_distribution == "CentOS"
 
-  - name: Ajouter le dépot Gitlab
+  - name: Ajouter le dépot Gitlab (CentOS)
     get_url:
-      url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/config_file.repo?os={{ ansible_distribution|lower }}&dist={{ansible_distribution_major_version}}&source=script
+      url: https://packages.gitlab.com/install/repositories/gitlab/{{gitlab_version}}/config_file.repo?os={{ ansible_distribution|lower }}&dist={{ansible_distribution_major_version}}&source=script
       dest: /etc/yum.repos.d/gitlab.repo
+    when: ansible_distribution == "CentOS"
 
-  - name: Mise à jour de la liste des paquets installables
+  - name: Ajouter le dépot Gitlab (Debian)
+    get_url:
+      url: https://packages.gitlab.com/install/repositories/gitlab/{{gitlab_version}}/config_file.list?os={{ ansible_distribution|lower }}&dist={{ansible_distribution_major_version}}&source=script
+      dest: /etc/apt/sources.list.d/gitlab.list
+    when: ansible_distribution == "Debian"
+
+  - name: Ajoute la clé du dépôt Gitlab (Debian)
+    apt_key:
+      url: https://packages.gitlab.com/gitlab/{{ gitlab_version }}/gpgkey
+      state: present
+    when: ansible_distribution == "Debian"
+
+  - name: Mise à jour de la liste des paquets installables (CentOS)
     yum:
       name: '*'
       state: latest
     tags: update
+    when: ansible_distribution == "CentOS"
 
-  - name: Installation de {{ gitlab_version  }}  
+  - name: Mise à jour de la liste des paquets installables (Debian)
+    apt: 
+      update_cache: yes 
+      force_apt_get: yes 
+    when: ansible_distribution == "Debian"
+
+  - name: Installation de {{ gitlab_version }} (CentOS) 
     yum:
       name: "{{ gitlab_version  }}"
       state: present
+    when: ansible_distribution == "CentOS"
+
+  - name: Installation de {{ gitlab_version }} (Debian) 
+    yum:
+      name: "{{ gitlab_version  }}"
+      state: present
+    when: ansible_distribution == "Debian"
 
   - name: Fixer l'URL d'accès à gitlab
     lineinfile:

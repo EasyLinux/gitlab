@@ -6,4 +6,5 @@
   roles:
     - update
     - gitlab
+    - vmware
 

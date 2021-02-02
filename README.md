@@ -15,6 +15,7 @@
 | Linux | CentOS 7     |  ppc64le     | Oui    | NON    |     
 | Linux | CentOS 8     |  x86_64      | Non    | Oui    |     
 | Linux | CentOS 8     |  x86_64      | Non    | ?      |     
+| Linux | Debian 10    |  x86_64      | Non    | Oui    |     
 
 
 Table des matières 

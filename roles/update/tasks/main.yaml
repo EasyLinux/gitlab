@@ -1,15 +1,23 @@
   - include_vars: var.yaml
 
-  - name: Mise à jour
+  - name: Mise à jour (CentOS)
     yum:
       name: '*'
       state: latest
     tags: update
+    when: ansible_distribution == "CentOS"
+
+  - name: Mise à jour (Debian)
+    apt: 
+      update_cache: yes 
+      force_apt_get: yes 
+    when: ansible_distribution == "Debian"
 
   - name: Installation depot Epel
     yum: 
       name: "epel-release"
       state: present
+    when: ansible_distribution == "CentOS"
   
   - name: Set a hostname
     hostname:

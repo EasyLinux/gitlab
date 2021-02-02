@@ -1,0 +1,25 @@
+  - name: Installation des vmWare Tools (Debian)
+    apt: 
+      name: open-vm-tools 
+      state: present
+    when: ansible_distribution == "Debian"
+
+  - name: Installation des vmWare Tools (CentOS) 
+    yum: 
+      pkg: open-vm-tools 
+      state: present
+    when: ansible_distribution == "CentOS"
+
+  - name: Démarrage du service (CentOS)
+    service: 
+      name: vmtoolsd 
+      enabled: yes 
+      state: started
+    when: ansible_distribution == "CentOS"
+
+  - name: Démarrage du service (Debian)
+    service: 
+      name: open-vm-tools 
+      enabled: yes 
+      state: started
+    when: ansible_distribution == "Debian"
