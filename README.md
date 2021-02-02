@@ -4,13 +4,17 @@
 * **Contact**: serge.noel@easylinux.fr
 * **Version**: 0.8
 * **Description**: Gitlab est un système de gestion de version de sources complet. Il dispose d'une grande base installée. Ce playbook installe la version <ce|ee>
-* ** Validations**:
 
-|  OS   | Distribution | Architecture | Validé |     
-|:-----:|:------------:|:------------:|:------:|   
-| Linux | CentOS 7     |  x86_64      |  OK    |     
-| Linux | CentOS 7     |  x86_64      |  OK    |     
-| Linux | CentOS 7     |  ppc64le     |  NON   |     
+**Validations**
+
+|  OS   | Distribution | Architecture | Docker | Validé |     
+|:-----:|:------------:|:------------:|:------:|:------:|   
+| Linux | CentOS 7     |  x86_64      | Non    | Oui    |     
+| Linux | CentOS 7     |  x86_64      | Non    | ?      |     
+| Linux | CentOS 7     |  ppc64le     | Non    | NON    |     
+| Linux | CentOS 7     |  ppc64le     | Oui    | NON    |     
+| Linux | CentOS 8     |  x86_64      | Non    | Oui    |     
+| Linux | CentOS 8     |  x86_64      | Non    | ?      |     
 
 
 Table des matières 
@@ -20,6 +24,13 @@ Table des matières
 ## Introduction
 
 Ce playbook permet l'installation de gitlab sur un serveur. Pour une installation **from scratch** suivre [ce lien](#installation-from-scratch) 
+
+## Docker ou pas
+
+* Docker fixe version Gitlab
+* Docker permet de migrer vers K8s / Openshift
+
+
 
 ## Configuration du playbook
 
@@ -159,12 +170,12 @@ docker cp gitlab:/etc/gitlab/* /var/opt/gitlab/backups/etc/
 * Sans Docker
 ```bash
 cp -r /var/opt/gitlab/backups/etc/* /etc/gitlab/ 
-gitlab-backup create SKIP=tar
+GITLAB_ASSUME_YES=1 gitlab-backup create SKIP=tar
 ```
 * Avec Docker
 ```bash
 docker cp /var/opt/gitlab/backups/etc/ gitlab:/etc/gitlab/* 
-docker exec gitlab gitlab-backup create SKIP=tar
+GITLAB_ASSUME_YES=1 docker exec gitlab gitlab-backup create SKIP=tar
 ```
 
 
