@@ -7,11 +7,11 @@
 
 **Validations**
 
-|  OS   | Distribution | Architecture | Docker | Validé |     
-|:-----:|:------------:|:------------:|:------:|:------:|   
-| Linux | CentOS 7     |  x86_64      | Non    | Oui    |     
+|  OS   | Distribution | Architecture | Docker | Validé             |     
+|:-----:|:------------:|:------------:|:------:|:------------------:|   
+| Linux | CentOS 7     |  x86_64      | Non    | :heavy_check_mark: |     
 | Linux | CentOS 7     |  x86_64      | Non    | ?      |     
-| Linux | CentOS 7     |  ppc64le     | Non    | NON    |     
+| Linux | CentOS 7     |  ppc64le     | Non    | :no_entry:         |     
 | Linux | CentOS 7     |  ppc64le     | Oui    | NON    |     
 | Linux | CentOS 8     |  x86_64      | Non    | Oui    |     
 | Linux | CentOS 8     |  x86_64      | Non    | ?      |     
