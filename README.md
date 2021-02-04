@@ -14,7 +14,7 @@
 | Linux | CentOS 7     |  ppc64le     | :cross_mark: | :cross_mark: |     
 | Linux | CentOS 7     |  ppc64le     | Oui          | :check_mark: |     
 | Linux | CentOS 8     |  x86_64      | :cross_mark: | :check_mark: |     
-| Linux | CentOS 8     |  x86_64      | :cross_mark: | ?            |     
+| Linux | CentOS 8     |  x86_64      | :cross_mark: | :no_entry:   |     
 | Linux | Debian 10    |  x86_64      | :cross_mark: | :check_mark: |     
 
 
