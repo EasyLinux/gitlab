@@ -9,13 +9,13 @@
 
 |  OS   | Distribution | Architecture | Docker | Validé             |     
 |:-----:|:------------:|:------------:|:------:|:------------------:|   
-| Linux | CentOS 7     |  x86_64      | Non    | :heavy_check_mark: |     
-| Linux | CentOS 7     |  x86_64      | Non    | ?      |     
-| Linux | CentOS 7     |  ppc64le     | Non    | :no_entry:         |     
-| Linux | CentOS 7     |  ppc64le     | Oui    | NON    |     
-| Linux | CentOS 8     |  x86_64      | Non    | Oui    |     
-| Linux | CentOS 8     |  x86_64      | Non    | ?      |     
-| Linux | Debian 10    |  x86_64      | Non    | Oui    |     
+| Linux | CentOS 7     |  x86_64      | :cross_mark:    | :check_mark: |     
+| Linux | CentOS 7     |  x86_64      | :cross_mark:    | ?                  |     
+| Linux | CentOS 7     |  ppc64le     | :cross_mark:   | :cross_mark:       |     
+| Linux | CentOS 7     |  ppc64le     | Oui    | :check_mark: |     
+| Linux | CentOS 8     |  x86_64      | :cross_mark:   | :check_mark: |     
+| Linux | CentOS 8     |  x86_64      | :cross_mark:    | ?                  |     
+| Linux | Debian 10    |  x86_64      | :cross_mark:    | :check_mark: |     
 
 
 Table des matières 
